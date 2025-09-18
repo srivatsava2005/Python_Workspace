@@ -1,0 +1,52 @@
+Q1. What are Python’s key features? Why is it called an interpreted language?
+
+Ans: Python is simple, high-level, dynamically typed, portable, and supports OOP and libraries. It is called interpreted because code runs line by line using the Python interpreter, without compilation.
+
+Q2. Difference between **Python 2 and Python 3**?
+
+Ans: Python 2 is legacy, uses print as a statement, and stores strings as ASCII by default. Python 3 is the present/future, uses print() as a function, and stores strings as Unicode by default.
+
+Q3. Explain **indentation** in Python. What happens if indentation is incorrect?
+
+Ans: Indentation defines code blocks (loops, functions, classes). Incorrect indentation raises an IndentationError or unexpected behavior.
+
+Q4. What are Python **keywords**? Can you use them as variable names?
+
+Ans: Keywords are reserved words like if, for, class, def. They cannot be used as variable names since they have predefined meaning.
+
+Q5. Difference between **list, tuple, set, and dictionary**. Give examples.
+
+Ans:  List → Ordered, mutable [1,2,3]
+
+    Tuple → Ordered, immutable (1,2,3)
+
+    Set → Unordered, unique {1,2,3}
+
+    Dictionary → Key-value pairs {"a":1, "b":2}
+
+Q6. What is the difference between **mutable and immutable** data types?
+
+Ans: Mutable types (list, dict, set) can be changed after creation. Immutable types (int, float, str, tuple) cannot be modified once created.
+
+Q7. Explain **== vs is** operator in Python with examples.
+
+Ans:  == checks values 
+        example: [1,2]==[1,2] = True.
+    is checks identity (memory location) 
+        example: [1,2] is [1,2] → False.
+
+Q8. What is the difference between **append() vs extend()** in lists?
+
+Ans:  append(x) adds the whole element as a single item
+        example: [1,2].append([3,4]) = [1,2,[3,4]]
+    extend(x) adds elements one by one
+        example: [1,2].extend([3,4]) = [1,2,3,4]
+Q9. Explain **shallow copy vs deep copy** in Python.
+
+Ans:  Shallow Copy → Creates a new object but only copies references of nested objects (changes in nested objects affect both).
+
+    Deep Copy → Creates a completely independent copy of the object and all nested objects (changes don’t affect each other).
+
+Q10. How does Python handle **memory management** (Garbage collection)?
+
+Ans:  Python uses automatic garbage collection via reference counting and a cyclic garbage collector to free unused objects.
