@@ -199,4 +199,3 @@ Using json.dump()/load() for files, json.dumps()/loads() for strings.
 
 60. How do you handle command-line arguments in Python?
 Using sys.argv or argparse for advanced parsing.
-
