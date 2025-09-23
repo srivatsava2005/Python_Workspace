@@ -7,4 +7,3 @@ for i in range(1, 21):
         print("Square of", i, "is", i * i)
 
 print("All even squares:", squares)
-# Output: All even squares: [4, 16, 36, 64, 100, 144, 196, 256, 324, 400]
