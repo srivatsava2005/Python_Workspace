@@ -1,0 +1,119 @@
+1. How does Python manage memory internally?
+Python uses a private heap, memory manager, garbage collector, and interning for small objects.
+
+2. What is the difference between id(), hash(), and is?
+id() gives object identity, hash() gives hash value, is checks object identity.
+
+3. How does Python’s garbage collector work?
+Uses reference counting and cyclic garbage collector.
+
+4. What are reference cycles, and how does Python handle them?
+Objects reference each other; GC detects and breaks cycles.
+
+5. What is the difference between deepcopy and pickle?
+deepcopy copies objects fully, pickle serializes and deserializes objects.
+
+6. What is the difference between shallow copy, deep copy, and assignment?
+Assignment = same reference, Shallow = copy container only, Deep = full recursive copy.
+
+7. How are Python’s lists implemented internally?
+As dynamic arrays with overallocation.
+
+8. How does Python implement dictionaries?
+As hash tables with open addressing.
+
+9. What is the difference between OrderedDict and dict in Python 3.7+?
+Dicts preserve insertion order; OrderedDict adds extra methods.
+
+10. How do you profile Python code?
+Use cProfile, timeit, line_profiler, memory_profiler.
+
+11. What is the Global Interpreter Lock (GIL)? Why does it exist?
+A lock allowing only one thread at a time; ensures memory safety in CPython.
+
+12. Difference between multithreading and multiprocessing?
+Threads share memory (I/O-bound), processes have separate memory (CPU-bound).
+
+13. When should you use threading vs multiprocessing?
+Threading for I/O tasks, multiprocessing for CPU tasks.
+
+14. What is asyncio in Python? How does it differ from threads?
+Asyncio uses an event loop and coroutines, lighter than threads.
+
+15. How do coroutines differ from generators?
+Generators yield values, coroutines can also consume values.
+
+16. Difference between ThreadPoolExecutor and ProcessPoolExecutor?
+ThreadPool = I/O-bound, ProcessPool = CPU-bound.
+
+17. What is the difference between cooperative multitasking and preemptive multitasking?
+Cooperative = tasks yield voluntarily, Preemptive = OS interrupts tasks.
+
+18. Write an example of an async function that fetches data from multiple URLs concurrently.
+Use asyncio with aiohttp.
+
+19. What are race conditions and deadlocks? How can Python handle them?
+Race = unsafe shared access, Deadlock = circular wait; solved with locks and design.
+
+20. How does Python handle inter-process communication?
+Using multiprocessing.Queue, Pipe, Manager, sockets, shared memory.
+
+21. What are Python memory views?
+Objects that allow zero-copy access to buffers.
+
+22. What is the difference between bytes, bytearray, and memoryview?
+Bytes = immutable, Bytearray = mutable, Memoryview = view without copy.
+
+23. How do you reduce memory usage for large datasets?
+Use generators, iterators, numpy/pandas, __slots__.
+
+24. What are slots (__slots__) in Python classes, and why are they useful?
+Fixed attributes save memory and make access faster.
+
+25. How do you implement an LRU cache manually?
+Use OrderedDict.
+
+26. How does Python’s functools.lru_cache work internally?
+Uses a dictionary with a doubly linked list for LRU eviction.
+
+27. What are weak references (weakref) in Python?
+References that do not increase reference count.
+
+28. How do you debug a memory leak in Python?
+Use gc, objgraph, tracemalloc.
+
+29. What are the trade-offs between generators and lists for memory efficiency?
+Generators are lazy and memory-efficient, lists store all values in memory.
+
+30. How do you handle huge data efficiently in Python?
+Use generators, chunking, numpy memory mapping.
+
+31. What are metaclasses in Python?
+Classes of classes that control creation.
+
+32. Difference between type() and class in Python?
+class defines, type() inspects or creates classes dynamically.
+
+33. How do you create a Singleton class in Python?
+Override __new__ to return the same instance.
+
+34. How do you implement the Factory design pattern in Python?
+Use a function or class to return objects based on input.
+
+35. What is monkey patching in Python?
+Modifying code at runtime.
+
+36. How do you implement mixins in Python?
+Use small classes with reusable methods.
+
+37. What is duck typing? Give an example.
+Type determined by behavior, not inheritance.
+
+38. How is multiple inheritance handled in Python (MRO)?
+Using C3 linearization (MRO).
+
+39. How do abstract base classes (abc module) work in Python?
+Define abstract methods that subclasses must implement.
+
+40. Explain dependency injection in Python with an example.
+Pass dependencies instead of hardcoding them.
