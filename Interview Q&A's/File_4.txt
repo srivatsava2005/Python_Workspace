@@ -1,0 +1,301 @@
+1. How does Python manage memory internally?
+Uses a private heap managed by the Python memory manager + garbage collector. Small objects via object-specific allocators.
+
+2. Difference between id(), hash(), and is?
+
+id() → memory address (unique for object lifetime).
+
+hash() → integer used in hashing (dicts/sets).
+
+is → identity comparison (same object?).
+
+3. How does Python’s garbage collector work?
+Uses reference counting + cyclic GC (detects unreachable cycles).
+
+4. What are reference cycles, and how does Python handle them?
+When objects reference each other → cycle. GC detects & breaks them (but not if __del__ present).
+
+5. Difference between deepcopy and pickle?
+
+deepcopy → copies objects recursively.
+
+pickle → serializes to bytes (for storage/transfer).
+
+6. Shallow copy vs deep copy vs assignment?
+
+Assignment → just new reference.
+
+Shallow copy → copies container, not nested objects.
+
+Deep copy → copies recursively.
+
+7. How are lists implemented internally?
+Dynamic arrays (over-allocated to reduce reallocations).
+
+8. How does Python implement dictionaries?
+Hash table with open addressing + perturbation for collisions.
+
+9. Difference between OrderedDict and dict in Python 3.7+?
+From 3.7+, dicts preserve insertion order (like OrderedDict). OrderedDict adds extra methods (move_to_end).
+
+10. How to profile Python performance?
+cProfile, timeit, line_profiler, memory_profiler.
+
+11. What is the GIL? Why?
+Global lock allowing only one thread to run Python bytecode at a time. Exists for memory safety.
+
+12. Multithreading vs Multiprocessing?
+Threads → same memory, light but GIL-limited.
+Processes → separate memory, true parallelism.
+
+13. When use threading vs multiprocessing?
+
+I/O-bound → threading.
+
+CPU-bound → multiprocessing.
+
+14. What is asyncio? How differs from threads?
+Single-threaded event loop for async I/O. Cooperative, not preemptive.
+
+15. Coroutines vs generators?
+Both use yield. Generators produce values, coroutines consume values and can be suspended.
+
+16. ThreadPoolExecutor vs ProcessPoolExecutor?
+ThreadPool → for I/O-bound tasks.
+ProcessPool → for CPU-bound tasks.
+
+17. Cooperative vs preemptive multitasking?
+
+Cooperative → tasks yield control (asyncio).
+
+Preemptive → OS scheduler interrupts (threads/processes).
+
+18. Async fetch multiple URLs example?
+
+import asyncio, aiohttp
+async def fetch(url, s): async with s.get(url) as r: return await r.text()
+async def main(urls):
+    async with aiohttp.ClientSession() as s:
+        return await asyncio.gather(*(fetch(u,s) for u in urls))
+
+
+19. Race conditions & deadlocks? Handling?
+Race → shared state conflict. Deadlock → tasks waiting forever. Use Lock, RLock, Semaphore, avoid circular waits.
+
+20. How does Python handle inter-process communication?
+multiprocessing.Pipe, Queue, shared memory, sockets.
+
+21. What are memory views?
+Lightweight objects exposing buffer interface (no copy).
+
+22. Difference between bytes, bytearray, memoryview?
+
+bytes immutable.
+
+bytearray mutable.
+
+memoryview → zero-copy view.
+
+23. Reduce memory usage for large datasets?
+Use generators, iterators, numpy arrays, memory-mapped files.
+
+24. What are __slots__? Why useful?
+Restricts attributes → saves memory (no __dict__).
+
+25. Implement LRU cache manually?
+Use OrderedDict (pop least-recently-used).
+
+26. How does functools.lru_cache work?
+Decorator wrapping function with dict + linked list for caching.
+
+27. What are weak references?
+References that don’t increase refcount (via weakref).
+
+28. Debug memory leaks?
+Use tracemalloc, gc module, objgraph.
+
+29. Generators vs lists for memory?
+Generators are lazy, use O(1) memory; lists store all items.
+
+30. Handle huge data (GBs)?
+Use streaming, chunks, pandas.read_csv(..., chunksize=), Dask.
+
+31. What are metaclasses?
+Classes of classes; control class creation.
+
+32. type() vs class?
+class keyword defines class; type() is metaclass that creates it.
+
+33. Singleton in Python?
+Override __new__ or use module-level variable.
+
+34. Factory pattern?
+Function/class that returns objects depending on input.
+
+35. Monkey patching?
+Modifying classes/functions at runtime.
+
+36. Mixins?
+Small reusable classes providing methods to subclasses.
+
+37. Duck typing?
+Object suitability by behavior, not type. ("If it quacks like a duck…").
+
+38. Multiple inheritance & MRO?
+C3 linearization → consistent method resolution order.
+
+39. Abstract base classes?
+abc.ABC enforces abstract methods in subclasses.
+
+40. Dependency injection example?
+Pass dependency as argument instead of hardcoding inside class.
+
+41. Trie?
+Tree storing strings character by character.
+
+42. Thread-safe queue?
+Use queue.Queue (has built-in locks).
+
+43. Linked list?
+Node class with insert, delete, search.
+
+44. Priority queue?
+Use heapq (binary heap).
+
+45. Optimize sorting large datasets?
+Use sorted() with key, external sorting (chunks + merge), numpy.
+
+46. Balanced BST?
+E.g., AVL/Red-Black Tree implementation.
+
+47. Graph traversal?
+BFS (queue), DFS (stack/recursion).
+
+48. Detect cycles in directed graph?
+DFS with recursion stack or Kahn’s algorithm.
+
+49. Rate limiter?
+Token bucket/leaky bucket with timestamps.
+
+50. Distributed counter?
+Use Redis atomic INCR or Zookeeper.
+
+51. Closure?
+Function capturing variables from enclosing scope.
+
+52. Currying?
+Transform function with multiple args → chain of single-arg functions.
+
+53. Partial functions?
+functools.partial → pre-fills arguments.
+
+54. Memoization vs caching?
+Memoization → cache function results. Caching → broader concept (data storage).
+
+55. Functional pipelines?
+Chain transformations using functools.reduce, generators.
+
+56. Tail recursion optimization?
+Manually convert recursion → loop (Python lacks TCO).
+
+57. Higher-order functions?
+Take/return functions (e.g., map, decorators).
+
+58. map/filter/reduce vs comprehensions?
+Comprehensions more Pythonic, faster in most cases.
+
+59. Function composition?
+compose = lambda f,g: lambda x: f(g(x)).
+
+60. Monads in Python?
+Not native; can model with wrapper classes (e.g., Maybe monad).
+
+61. Unit tests?
+unittest (built-in), pytest (popular, simpler).
+
+62. Mocking?
+Simulating dependencies for isolated tests.
+
+63. Patch dependencies?
+Use unittest.mock.patch.
+
+64. Integration vs unit tests?
+Unit → small, isolated. Integration → multiple modules working together.
+
+65. Parameterized test?
+pytest.mark.parametrize.
+
+66. tox vs pytest?
+pytest → runs tests. tox → automates testing in multiple envs.
+
+67. Publish to PyPI?
+setup.py/pyproject.toml, build with build, upload with twine.
+
+68. Manage venvs/deps?
+venv, virtualenv, conda, poetry.
+
+69. Wheels (.whl)?
+Built distribution format (faster install vs source).
+
+70. What is poetry?
+Dependency & packaging manager for Python.
+
+71. REST API without Flask/Django?
+Use http.server or BaseHTTPRequestHandler.
+
+72. WebSockets?
+Use websockets library or asyncio.
+
+73. WSGI?
+Web Server Gateway Interface → standard between servers & apps.
+
+74. Scale Python apps?
+Load balancers, caching, DB sharding, async, horizontal scaling.
+
+75. Message queues?
+RabbitMQ, Kafka, Redis.
+
+76. Distributed task queue?
+Celery, RQ.
+
+77. Sync vs async frameworks?
+Sync → blocking (Flask). Async → non-blocking (FastAPI).
+
+78. Retries & backoff?
+Use tenacity, exponential backoff loops.
+
+79. Role of uvicorn & gunicorn?
+ASGI (uvicorn) & WSGI (gunicorn) servers to run apps.
+
+80. API rate limiting?
+Token bucket, Redis counters, middleware.
+
+81. Context manager without with?
+Define __enter__ & __exit__, call manually.
+
+82. Decorator class with params?
+Class implementing __call__, accept params in __init__.
+
+83. __new__ vs __init__?
+__new__ → creates instance. __init__ → initializes.
+
+84. Operator overloading?
+Implement dunder methods (__add__, __eq__, etc.).
+
+85. Lazy evaluation?
+Use generators, properties, or custom proxy objects.
+
+86. eval() vs exec()?
+eval → evaluates expression. exec → executes statements. Dangerous (code injection).
+
+87. Sandbox untrusted code?
+Restricted env, containers, ast.literal_eval.
+
+88. Secure against code injection?
+Validate inputs, avoid eval/exec, use parameterized queries.
+
+89. Optimize for multi-core CPUs (GIL)?
+Use multiprocessing, C extensions, or JIT compilers (PyPy).
+
+90. Custom event loop?
+Use select/epoll + loop over ready sockets/tasks.
