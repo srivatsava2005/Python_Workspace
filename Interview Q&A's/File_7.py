@@ -7,7 +7,6 @@
 # We write a recursive function that adds up all numbers inside nested lists/dicts.
 
 def sum_nested(data):
-    """Recursively add all numbers inside nested data structures."""
     total = 0
 
     if isinstance(data, dict):
