@@ -23,7 +23,7 @@ byakuya = Shinigami("Byakuya Kuchiki", "6th Division", "Senbonzakura")
 ichigo.display_info()
 ichigo.attack()
 
-print() 
+print()
 
 byakuya.display_info()
 byakuya.attack()
