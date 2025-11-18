@@ -58,6 +58,7 @@ print("-" * 50)
 # ----------------------------------------
 
 class Fibonacci:
+    
     """An iterator that generates Fibonacci numbers up to a limit."""
 
     def __init__(self, n):
